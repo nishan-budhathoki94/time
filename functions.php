@@ -104,9 +104,21 @@ add_action( 'widgets_init', 'time_widgets_init' );
 function time_scripts() {
 	wp_enqueue_style( 'time-style', get_stylesheet_uri() );
 
-	wp_enqueue_script( 'time-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20151215', true );
+	wp_enqueue_style( 'time-google-font', 'https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic,500,700', false );
 
-	wp_enqueue_script( 'time-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20151215', true );
+	wp_enqueue_style( 'time-font-awesome', 'https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css', false );
+
+	wp_enqueue_script( 'time-jquery', 'http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js', array(), '1.8.2', true );
+
+	/* bxSlider Javascript file */
+
+	wp_enqueue_script( 'time-bxslider', '/js/jquery.bxslider.min.js', array(), '20160831', true );
+
+	wp_enqueue_script( 'time-navigation', get_template_directory_uri() . '/js/jquery-nav.js', array(), '20160831', true );
+
+	wp_enqueue_script( 'time-parallax', get_template_directory_uri() . '/js/jquery.parallax-1.1.3.js', array(), '1.1.3', true );
+
+	wp_enqueue_script( 'time-main-js', get_template_directory_uri() . '/js/main.js', array(), '20151215', true );
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
