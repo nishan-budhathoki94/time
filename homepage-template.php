@@ -54,9 +54,9 @@ if(  $slider_activate == 1 ):?>
 endif;
 //End of slider actvation check
 
-if( is_active_sidebar( 'frontpage_sidebar' ) ) {
+if( is_active_sidebar( 'sidebar_1' ) ) {
 		// Calling the  frontpage sidebar if it exists.
-		if ( !dynamic_sidebar( 'frontpage_sidebar' ) ):
+		if ( !dynamic_sidebar( 'sidebar_1' ) ):
 		endif;
 	}
 

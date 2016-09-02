@@ -95,7 +95,9 @@ function time_widgets_init() {
 		'before_title'  => '<h4><span>',
 		'after_title'   => '</span></h4>',
 	) );
+
 }
+
 add_action( 'widgets_init', 'time_widgets_init' );
 
 /**
@@ -156,5 +158,22 @@ require get_template_directory() . '/inc/jetpack.php';
  */
 require get_template_directory() . '/inc/widgets.php';
 
+/**
+ * Load the widgets file
+ */
+require get_template_directory() . '/inc/aq_resizer.php';
+
+//registering image size for service widget
+add_image_size( 'service', '172', '115');
+
+
+//registering image size for feature widget
+add_image_size( 'feature', '232', '232',true);
+
+//Maintaining the excerpt
+function time_custom_excerpt_length( $length ) {
+	return 20;
+}
+add_filter( 'excerpt_length', 'time_custom_excerpt_length', 999 );
 
 
