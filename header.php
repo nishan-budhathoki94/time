@@ -13,6 +13,7 @@
 <html <?php language_attributes(); ?>>
 <head>
 <meta charset="<?php bloginfo( 'charset' ); ?>">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="profile" href="http://gmpg.org/xfn/11">
 <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
@@ -20,31 +21,40 @@
 <?php wp_head(); ?>
 </head>
 
-<body <?php body_class(); ?>>
-<div id="page" class="site">
-	<a class="skip-link screen-reader-text" href="#content"><?php esc_html_e( 'Skip to content', 'time' ); ?></a>
+<body <?php body_class(); ?> id="home">
+<div id="page" class="hfeedsite">
+	<header id="masthead" class="site-header">
+		<div class="header-wrapper clearfix">
+			<div class="container">
+				<div class="header-wrapper clearfix">
+					<div class="logo">
+						<h1>
+							<?php $img_src = esc_url(get_theme_mod( 'time_logo' ));?>
+							<a href="<?php echo esc_url( home_url( '/' ) ); ?>">
+							<?php if( $img_src ) { 
+								echo '<img src="'.$img_src.'">';
+							}
+								else {
+								echo esc_attr( get_bloginfo( 'name', 'display' ) );
+							}?>
+							</a>
+						</h1>
+					</div><!--end logo-->
 
-	<header id="masthead" class="site-header" role="banner">
-		<div class="site-branding">
-			<?php
-			if ( is_front_page() && is_home() ) : ?>
-				<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
-			<?php else : ?>
-				<p class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></p>
-			<?php
-			endif;
-
-			$description = get_bloginfo( 'description', 'display' );
-			if ( $description || is_customize_preview() ) : ?>
-				<p class="site-description"><?php echo $description; /* WPCS: xss ok. */ ?></p>
-			<?php
-			endif; ?>
-		</div><!-- .site-branding -->
-
-		<nav id="site-navigation" class="main-navigation" role="navigation">
-			<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><?php esc_html_e( 'Primary Menu', 'time' ); ?></button>
-			<?php wp_nav_menu( array( 'theme_location' => 'primary', 'menu_id' => 'primary-menu' ) ); ?>
-		</nav><!-- #site-navigation -->
+				<nav id="site-navigation" class="main-navigation">
+					<div class="menu-toggle">
+						<i class="fa fa-bars"></i>
+					</div>
+					<?php
+						if ( has_nav_menu( 'primary' ) ) {
+							wp_nav_menu( array( 'theme_location' => 'primary', 'menu_id' => 'nav', 'container' => false ) );
+						}
+						else {
+							wp_page_menu();
+						}
+					?>
+				</nav><!-- #site-navigation -->
+				</div>
+			</div>
+		</div>
 	</header><!-- #masthead -->
-
-	<div id="content" class="site-content">

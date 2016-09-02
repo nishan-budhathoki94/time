@@ -11,15 +11,11 @@
 
 ?>
 
-	</div><!-- #content -->
-
-	<footer id="colophon" class="site-footer" role="contentinfo">
-		<div class="site-info">
-			<a href="<?php echo esc_url( __( 'https://wordpress.org/', 'time' ) ); ?>"><?php printf( esc_html__( 'Proudly powered by %s', 'time' ), 'WordPress' ); ?></a>
-			<span class="sep"> | </span>
-			<?php printf( esc_html__( 'Theme: %1$s by %2$s.', 'time' ), 'time', '<a href="http://underscores.me/" rel="designer">Nishan</a>' ); ?>
-		</div><!-- .site-info -->
-	</footer><!-- #colophon -->
+	<div class="copyright">
+		<div class="container">
+			<p>Copyright &copy; 2016 <span><a href="#">Times</a></span> Theme by: <span><a href="#">ThemeGrill</a></span> Powered by: <span><a href="#">WordPress</a></span></p>
+		</div>
+	</div>
 </div><!-- #page -->
 
 <?php wp_footer(); ?>
