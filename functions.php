@@ -164,7 +164,7 @@ require get_template_directory() . '/inc/widgets.php';
 require get_template_directory() . '/inc/aq_resizer.php';
 
 //registering image size for service widget
-add_image_size( 'service', '172', '115');
+add_image_size( 'post', '373', '265');
 
 
 //registering image size for feature widget
