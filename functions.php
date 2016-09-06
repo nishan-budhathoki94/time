@@ -135,15 +135,6 @@ function time_scripts() {
 	$time_hover_color = esc_attr(get_theme_mod('time_hover_color', '#c83434' ));
 	$time_custom_css = get_theme_mod('time_custom_css_text','');
 	$time_custom_color_css = '
-
-				a {
-			    	color: '.$time_primary_color.';
-				}
-
-				a:hover {
-    				color: '.$time_hover_color.';
-				}
-
 				#site-navigation ul li a:hover {
 					color: '.$time_hover_color.';
 				}
