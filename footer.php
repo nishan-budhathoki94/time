@@ -9,13 +9,15 @@
  * @package Time
  */
 
-?>
 
-	<div class="copyright">
-		<div class="container">
-			<p>Copyright &copy; 2016 <span><a href="#">Times</a></span> Theme by: <span><a href="#">ThemeGrill</a></span> Powered by: <span><a href="#">WordPress</a></span></p>
+    if( get_theme_mod('time_activate_footer',1) == 1 ):?>
+		<div class="copyright" style="background-color: <?php echo esc_attr(get_theme_mod('time_footer_color','#e3e3e3'));?>; 
+		text-align:<?php echo esc_attr(get_theme_mod('time_footer_text_position','center'));?>">
+			<div class="container">
+				<?php echo get_theme_mod('time_footer_text');?>
+			</div>
 		</div>
-	</div>
+	<?php endif;?>
 </div><!-- #page -->
 
 <?php wp_footer(); ?>

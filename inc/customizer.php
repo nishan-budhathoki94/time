@@ -213,6 +213,135 @@ function time_customize_register( $wp_customize ) {
 
    				/****************************************Sanitazation****************************************/
 
+
+  // Footer section
+  $wp_customize->add_panel('time_footer', array(
+      'capabitity' => 'edit_theme_options',
+      'priority' => 110,
+      'title' => __('Footer', 'time')
+    ));
+
+  //checkbox for activating footer
+  $wp_customize->add_section('time_footer_options', array(
+    'priority' => 1,
+    'title' => __('Footer options', 'time'),
+    'panel' => 'time_footer'
+  ));
+
+  $wp_customize->add_setting('time_activate_footer', array(
+    'default' => '',
+    'capability' => 'edit_theme_options',
+    'sanitize_callback' => 'time_checkbox_sanitize'
+  ));
+
+  $wp_customize->add_control('time_activate_footer', array(
+    'type' => 'checkbox',
+    'label' => __('Check to activate footer.', 'time'),
+    'section' => 'time_footer_options',
+    'settings' => 'time_activate_footer'
+  ));
+
+   // adding footer description
+  $wp_customize->add_setting('time_footer_text', array(
+     'default' => '',
+     'capability' => 'edit_theme_options',
+     'sanitize_callback' => 'time_text_sanitize'
+  ));
+
+  $wp_customize->add_control(new Time_Text_Area_Control($wp_customize, 'time_footer_text', array(
+   'label' => __( 'Enter footer text.', 'time' ),
+   'section' => 'time_footer_options',
+   'setting' => 'time_footer_text'
+  )));
+
+  //Footer design(Color and alignment)
+  $wp_customize->add_section('time_footer_design_options', array(
+    'priority' => 1,
+    'title' => __('Footer Design options', 'time'),
+    'panel' => 'time_footer'
+  ));
+
+  $wp_customize->add_setting('time_footer_color', array(
+     'default' => '#e3e3e3',
+     'capability' => 'edit_theme_options',
+     'sanitize_callback' => 'time_color_option_hex_sanitize',
+  ));
+
+  $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'time_footer_color', array(
+        'label' => 'Select a background color for the footer '.__('Default is : #E3E3E3','time'),
+        'settings' => 'time_footer_color',
+        'section' => 'time_footer_design_options'
+     )));
+
+  $wp_customize->add_setting('time_footer_text_position', array(
+     'default' => '',
+     'capability' => 'edit_theme_options',
+     'sanitize_callback' => 'time_text_sanitize'
+  ));
+
+  $wp_customize->add_control('time_footer_text_position', array(
+   'label' => __( 'Choose the footer text alignment', 'time' ),
+   'type' => 'select',
+   'section' => 'time_footer_design_options',
+   'setting' => 'time_footer_text_position',
+   'choices' => array(
+        'center' => 'Center',
+        'left' => 'Left',
+        'Right' => 'right',
+    ),
+   ));
+
+  $wp_customize->add_setting('time_primary_color', array(
+     'default' => '#C83434',
+     'capability' => 'edit_theme_options',
+     'sanitize_callback' => 'time_color_option_hex_sanitize',
+  ));
+
+  $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'time_primary_color', array(
+        'label' => 'Select a primary color for your theme '.__('Default is: #c83434', 'time'),
+        'settings' => 'time_primary_color',
+        'section' => 'colors'
+  )));
+
+   $wp_customize->add_setting('time_hover_color', array(
+     'default' => '#C83434',
+     'capability' => 'edit_theme_options',
+     'sanitize_callback' => 'time_color_option_hex_sanitize',
+  ));  
+
+  $wp_customize->add_control( new WP_Customize_Color_Control($wp_customize, 'time_hover_color', array(
+        'label' => 'Select a hover color for your theme '.__('Default is: #c83434','time'),
+        'settings' => 'time_hover_color',
+        'section' => 'colors'
+  )));
+
+   // Design Section
+  $wp_customize->add_panel('time_design_options', array(
+      'capabitity' => 'edit_theme_options',
+      'priority' => 90,
+      'title' => __('Design', 'time')
+    ));
+  
+  //Section for Custom CSS
+  $wp_customize->add_section('time_custom_css_section', array(
+    'priority' => 1,
+    'title' => __('Custom Css', 'time'),
+    'panel' => 'time_design_options'
+  ));
+
+  // Textarea for adding custom css
+  $wp_customize->add_setting('time_custom_css_text', array(
+   'default' => '',
+   'capability' => 'edit_theme_options',
+   'sanitize_callback' => 'time_text_sanitize'
+  ));
+
+  $wp_customize->add_control(new Time_Text_Area_Control($wp_customize, 'time_custom_css_text', array(
+   'label' => __( 'Enter your custom css here.', 'time' ),
+   'section' => 'time_custom_css_section',
+   'setting' => 'time_design_options'
+  )));
+
     // slider number sanitize
     function time_slider_number_sanitize($input) {
       if( is_numeric( $input ) ) {
@@ -235,6 +364,14 @@ function time_customize_register( $wp_customize ) {
     function time_text_sanitize($input) {
       return wp_kses_post( force_balance_tags( $input ) );
     }
+
+    // Color sanitization
+   function time_color_option_hex_sanitize($color) {
+      if ($unhashed = sanitize_hex_color_no_hash($color))
+         return '#' . $unhashed;
+
+      return $color;
+   }
 
 
 }

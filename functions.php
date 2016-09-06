@@ -104,7 +104,10 @@ add_action( 'widgets_init', 'time_widgets_init' );
  * Enqueue scripts and styles.
  */
 function time_scripts() {
+
 	wp_enqueue_style( 'time-style', get_stylesheet_uri() );
+
+	wp_enqueue_style( 'time-custom-style', get_template_directory_uri() .'/css/custom-style.css', array(), '20160831', true );
 
 	wp_enqueue_style( 'time-google-font', 'https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic,500,700', false );
 
@@ -113,7 +116,6 @@ function time_scripts() {
 	wp_enqueue_script( 'time-jquery', 'http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js', array(), '1.8.2', true );
 
 	/* bxSlider Javascript file */
-
 	wp_enqueue_script( 'time-bxslider', get_template_directory_uri() .'/js/jquery.bxslider.min.js', array(), '20160831', true );
 
 	wp_enqueue_script( 'time-navigation', get_template_directory_uri() . '/js/jquery-nav.js', array(), '20160831', true );
@@ -125,6 +127,81 @@ function time_scripts() {
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
 	}
+
+	//Enqueue syle for custom color
+	$time_custom_css = '';
+	$time_custom_color_css = '';
+	$time_primary_color = esc_attr(get_theme_mod('time_primary_color', '#c83434' ));
+	$time_hover_color = esc_attr(get_theme_mod('time_hover_color', '#c83434' ));
+	$time_custom_css = get_theme_mod('time_custom_css_text','');
+	$time_custom_color_css = '
+
+				a {
+			    	color: '.$time_primary_color.';
+				}
+
+				a:hover {
+    				color: '.$time_hover_color.';
+				}
+
+				#site-navigation ul li a:hover {
+					color: '.$time_hover_color.';
+				}
+
+				#site-navigation ul.sub-menu > li:hover > a {
+     				color: '.$time_hover_color.';
+				}
+
+				.btn-wrapper a:hover{
+     				background-color: '.$time_hover_color.';
+ 				}
+
+ 				.service-inner-part .entry-content .btn-wrapper a:hover {
+    				 background-color: '.$time_hover_color.';
+ 				}
+
+ 				.feature-part .entry-content .btn-wrapper a:hover {
+     				background-color: '.$time_hover_color.';
+ 				    border-color: '.$time_primary_color.';
+				}
+
+				.blog-inner-content .entry-content .btn-wrapper a:hover {
+    			 	color: '.$time_hover_color.';
+				}
+
+				.copyright p span a:hover {
+     				color: '.$time_hover_color.';
+				}
+
+				#site-navigation .menu-toggle:hover:before {
+        			color: '.$time_hover_color.';
+     			}
+
+		        #site-navigation ul.sub-menu li > ul.sub-menu li a:hover {
+         			color: '.$time_hover_color.';
+ 				}
+
+ 				.btn-wrapper a {
+    				border-color: '.$time_primary_color.';
+				}
+
+ 				.service-inner-part .entry-content .btn-wrapper a {
+    				color:'.$time_primary_color.';
+				}
+
+ 				.clients-name span {
+     				color:'.$time_primary_color.';
+ 				}
+
+ 				form .contact-content-wrap .btn-wrapper input {
+     				background-color: '.$time_primary_color.';
+				}
+ 	';
+
+ 	wp_add_inline_style( 'time-custom-style', $time_custom_color_css );
+
+ 	wp_add_inline_style( 'time-style', $time_custom_css );
+	
 }
 add_action( 'wp_enqueue_scripts', 'time_scripts' );
 
@@ -163,12 +240,12 @@ require get_template_directory() . '/inc/widgets.php';
  */
 require get_template_directory() . '/inc/aq_resizer.php';
 
-//registering image size for service widget
-add_image_size( 'post', '373', '265');
+//registering image size
+add_image_size( 'post', '373', '265', true);
 
-
-//registering image size for feature widget
 add_image_size( 'feature', '232', '232',true);
+
+add_image_size( 'service', '172', '115',true);
 
 //Maintaining the excerpt
 function time_custom_excerpt_length( $length ) {

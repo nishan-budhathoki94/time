@@ -138,12 +138,12 @@ class time_service_widget extends WP_Widget {
 			'orderby' 		 			=> 'post__in'
 		) );
 		echo $before_widget; ?>
-		<section id="<?php echo $section_id;?>" class="inner-section services">
+		<section id="<?php echo esc_attr($section_id);?>" class="inner-section services">
 			<div class="section-wrapper">
 				<div class="container">
 					<div class="section-title-wrapper">
-							<h3 class="section-title"><span><?php echo $section_title;?></span></h3>
-							<h2 class="section-subtitle"><span><?php echo $section_desc;?></span></h2>
+							<h3 class="section-title"><span><?php echo esc_html($section_title);?></span></h3>
+							<h2 class="section-subtitle"><span><?php echo esc_html($section_desc);?></span></h2>
 					</div>
 					<div class="service-content-wrap column-wrapper">
 						<?php
@@ -313,7 +313,7 @@ class time_feature_widget extends WP_Widget {
 			'orderby' 		 			=> 'post__in'
 		) );
 		echo $before_widget; ?>
-		<section id="<?php echo $section_id;?>" class="inner-section features" <?php if($background_image): echo 'style="background:url('.esc_url($background_image).') 50% 0 no-repeat fixed "'; endif; ?>>
+		<section id="<?php echo esc_attr($section_id);?>" class="inner-section features" <?php if($background_image): echo 'style="background:url('.esc_url($background_image).') 50% 0 no-repeat fixed "'; endif; ?>>
 		<div class="overlay"></div>
 			<div class="section-wrapper">
 				<div class="container">
@@ -477,12 +477,12 @@ class time_testimonial_widget extends WP_Widget {
 			'orderby' 		 			=> 'post__in'
 		) );
 		echo $before_widget; ?>
-		<section id="<?php echo $section_id;?>" class="inner-section clients">
+		<section id="<?php echo esc_attr($section_id);?>" class="inner-section clients">
 			<div class="section-wrapper">
 				<div class="container">
 					<div class="section-title-wrapper">
-							<h3 class="section-title"><span><?php echo $section_title;?></span></h3>
-							<h2 class="section-subtitle"><span><?php echo $section_desc;?></span></h2>
+							<h3 class="section-title"><span><?php echo esc_html($section_title);?></span></h3>
+							<h2 class="section-subtitle"><span><?php echo esc_html($section_desc);?></span></h2>
 					</div>
 					<div class="clients-content-wrap">
 						<ul class="client-slider">
@@ -494,7 +494,7 @@ class time_testimonial_widget extends WP_Widget {
 									<?php
 									if ( has_post_thumbnail() ) {
 										$thumb = get_post_thumbnail_id();
-										$img_url = wp_get_attachment_url( $thumb,'full' ); //get full URL to image (use "large" or "medium" if the images too big)
+										$img_url = wp_get_attachment_url( $thumb,'full' ); //get full URL to image
 										$image = aq_resize( $img_url, 100, 120, true ); //resize & crop the image
 										if(!$image) { $image = $img_url; }
 
@@ -646,7 +646,7 @@ class time_post_widget extends WP_Widget {
 			) );
 		}
 		echo $before_widget; ?>
-		<section id="<?php echo $section_id;?>" class="inner-section blogs" <?php if($background_image): echo 'style="background:url('.esc_url($background_image).') 50% 0 no-repeat fixed "'; endif; ?>>
+		<section id="<?php echo esc_attr($section_id);?>" class="inner-section blogs" <?php if($background_image): echo 'style="background:url('.esc_url($background_image).') 50% 0 no-repeat fixed "'; endif; ?>>
 		<div class="overlay"></div>
 			<div class="section-wrapper">
 				<div class="container">
@@ -669,11 +669,11 @@ class time_post_widget extends WP_Widget {
 									<?php
 									if ( has_post_thumbnail() ) {
 										$thumb = get_post_thumbnail_id();
-										$img_url = wp_get_attachment_url( $thumb,'post' ); //get full URL to image (use "large" or "medium" if the images too big)
-										$image = aq_resize( $img_url, 373, 265, true ); //resize & crop the image
-										//if(!$image) { $image = $img_url; }
+										$img_url = wp_get_attachment_url( $thumb,'post' );
+										$image = aq_resize( $img_url,373, 265, true ); //resize & crop the image
+										if(!$image) { $image = $img_url; }
 
-											echo'<div class="image-wrapper"><img src="'.$image.'"></div>';
+										echo'<div class="image-wrapper"><img src="'.$image.'"></div>';
 										
 									}
 									?>
