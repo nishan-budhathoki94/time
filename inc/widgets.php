@@ -582,7 +582,7 @@ class time_post_widget extends WP_Widget {
 			<textarea class="textarea" rows ="5"  cols="30" id="<?php echo $this->get_field_id('section_desc'); ?>" name="<?php echo $this->get_field_name('section_desc'); ?>"><?php echo esc_attr($section_desc);?> </textarea>
 		</p>
 		<p>
-			<label for="<?php echo $this->get_field_id('number'); ?>"><?php _e( 'Number of posts to display:', 'accelerate' ); ?></label>
+			<label for="<?php echo $this->get_field_id('number'); ?>"><?php _e( 'Number of posts to display:', 'time' ); ?></label>
 			<input id="<?php echo $this->get_field_id('number'); ?>" name="<?php echo $this->get_field_name('number'); ?>" type="text" value="<?php echo $number; ?>" size="3" />
 		</p>
 		<p><input type="radio" <?php checked($type, 'latest') ?> id="<?php echo $this->get_field_id( 'type' ); ?>" name="<?php echo $this->get_field_name( 'type' ); ?>" value="latest"/><?php _e( 'Show latest Posts', 'time' );?><br />

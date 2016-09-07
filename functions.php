@@ -107,22 +107,22 @@ function time_scripts() {
 
 	wp_enqueue_style( 'time-style', get_stylesheet_uri() );
 
-	wp_enqueue_style( 'time-custom-style', get_template_directory_uri() .'/css/custom-style.css', array(), '20160831', true );
+	wp_enqueue_style( 'time-custom-style', get_template_directory_uri() .'/css/custom-style.css', array(), '20160831');
 
 	wp_enqueue_style( 'time-google-font', 'https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic,500,700', false );
 
-	wp_enqueue_style( 'time-font-awesome', 'https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css', false );
+	wp_enqueue_style( 'time-font-awesome', get_template_directory_uri() .'/font-awesome/css/font-awesome.min.css', false );
 
-	wp_enqueue_script( 'time-jquery', 'http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js', array(), '1.8.2', true );
+	wp_enqueue_script( 'time-jquery', 'http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js', array(), '1.8.2' );
 
 	/* bxSlider Javascript file */
-	wp_enqueue_script( 'time-bxslider', get_template_directory_uri() .'/js/jquery.bxslider.min.js', array(), '20160831', true );
+	wp_enqueue_script( 'time-bxslider', get_template_directory_uri() .'/js/jquery.bxslider.min.js', array(), '20160831' );
 
-	wp_enqueue_script( 'time-navigation', get_template_directory_uri() . '/js/jquery-nav.js', array(), '20160831', true );
+	wp_enqueue_script( 'time-navigation', get_template_directory_uri() . '/js/jquery-nav.js', array(), '20160831' );
 
-	wp_enqueue_script( 'time-parallax', get_template_directory_uri() . '/js/jquery.parallax-1.1.3.js', array(), '1.1.3', true );
+	wp_enqueue_script( 'time-parallax', get_template_directory_uri() . '/js/jquery.parallax-1.1.3.js', array(), '1.1.3' );
 
-	wp_enqueue_script( 'time-main-js', get_template_directory_uri() . '/js/main.js', array(), '20151215', true );
+	wp_enqueue_script( 'time-main-js', get_template_directory_uri() . '/js/main.js', array(), '20151215' );
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
@@ -227,7 +227,7 @@ require get_template_directory() . '/inc/jetpack.php';
 require get_template_directory() . '/inc/widgets.php';
 
 /**
- * Load the widgets file
+ * Load the aqua resizer
  */
 require get_template_directory() . '/inc/aq_resizer.php';
 
@@ -238,7 +238,7 @@ add_image_size( 'feature', '232', '232',true);
 
 add_image_size( 'service', '172', '115',true);
 
-//Maintaining the excerpt
+//Maintaining the default excerpt lenght
 function time_custom_excerpt_length( $length ) {
 	return 20;
 }
